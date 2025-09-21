@@ -1,0 +1,121 @@
+{
+  "info": {
+    "name": "Kalaikatha API",
+    "description": "Collection for testing Kalaikatha API endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Content Generation",
+      "item": [
+        {
+          "name": "Generate Content",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{idToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/generate-content",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate-content"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product_details\": {\n    \"name\": \"Handwoven Silk Saree\",\n    \"category\": \"textiles\",\n    \"materials\": [\"silk\", \"zari\"],\n    \"technique\": \"handloom weaving\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Voice Processing",
+      "item": [
+        {
+          "name": "Voice to Text",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{idToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/voice-to-text",
+              "host": ["{{baseUrl}}"],
+              "path": ["voice-to-text"]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "audio",
+                  "type": "file",
+                  "src": ""
+                },
+                {
+                  "key": "language_code",
+                  "value": "hi-IN",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Price Suggestions",
+      "item": [
+        {
+          "name": "Suggest Price",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{idToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/suggest-price",
+              "host": ["{{baseUrl}}"],
+              "path": ["suggest-price"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category\": \"textiles\",\n  \"materials\": [\"silk\", \"zari\"],\n  \"complexity_score\": 8\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://us-central1-kalaikatha.cloudfunctions.net"
+    },
+    {
+      "key": "idToken",
+      "value": "your_firebase_id_token_here"
+    }
+  ]
+}

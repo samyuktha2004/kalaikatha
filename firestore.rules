@@ -1,0 +1,59 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isCloudFunction() {
+      return request.auth.token.email.matches('.*@appspot.gserviceaccount.com$');
+    }
+
+    // Products collection
+    match /products/{productId} {
+      // Anyone can read published products
+      allow read: if resource.data.status == 'published';
+      
+      // Draft products can only be read by owner
+      allow read: if resource.data.status == 'draft' 
+                 && isOwner(resource.data.artisanId);
+      
+      // Cloud Functions can write, owners can update their products
+      allow write: if isCloudFunction() 
+                  || isOwner(resource.data.artisanId);
+    }
+
+    // Collaboration profiles
+    match /collaboration_profiles/{userId} {
+      // Profiles are publicly readable
+      allow read: if true;
+      
+      // Only owner and Cloud Functions can write
+      allow write: if isOwner(userId) || isCloudFunction();
+    }
+
+    // User-specific data
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+    }
+
+    // Orders collection
+    match /orders/{orderId} {
+      allow create: if isAuthenticated();
+      allow read: if isAuthenticated() 
+                 && (request.auth.uid == resource.data.customerId 
+                     || request.auth.uid == resource.data.artisanId);
+      allow update: if isOwner(resource.data.artisanId);
+    }
+
+    // Analytics collection (restricted to Cloud Functions)
+    match /analytics/{docId} {
+      allow read, write: if isCloudFunction();
+    }
+  }
+}

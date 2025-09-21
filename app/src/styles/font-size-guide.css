@@ -1,0 +1,265 @@
+/* ===============================================
+   CENTRALIZED FONT SIZE GUIDE SYSTEM
+   Accessibility-first typography with 22px base size
+   Edit font sizes here to reflect changes across the entire app
+=============================================== */
+
+:root {
+  /* ===== BASE FONT SIZE (22px = 1rem for accessibility) ===== */
+  font-size: 22px; /* Sets 1rem = 22px globally */
+  
+  /* ===== HEADING SIZES ===== */
+  /* Following a modular scale for consistent typography hierarchy */
+  --font-size-h1: 3rem;        /* 66px - Main page titles, hero headings */
+  --font-size-h2: 2.5rem;      /* 55px - Section headings */
+  --font-size-h3: 2rem;        /* 44px - Subsection headings */
+  --font-size-h4: 1.75rem;     /* 38.5px - Card titles, component headers */
+  --font-size-h5: 1.5rem;      /* 33px - Small headings */
+  --font-size-h6: 1.25rem;     /* 27.5px - Minor headings */
+  
+  /* ===== BODY TEXT SIZES ===== */
+  --font-size-body: 1rem;           /* 22px - Standard body text (accessible base) */
+  --font-size-body-large: 1.125rem; /* 24.75px - Prominent body text */
+  --font-size-body-small: 0.875rem; /* 19.25px - Secondary text (still above 16px min) */
+  --font-size-body-xs: 0.8rem;      /* 17.6px - Fine print (still accessible) */
+  
+  /* ===== BUTTON SIZES ===== */
+  --font-size-btn-large: 1.375rem;  /* 30.25px - Primary action buttons */
+  --font-size-btn-medium: 1.125rem; /* 24.75px - Standard buttons */
+  --font-size-btn-small: 1rem;      /* 22px - Compact buttons */
+  --font-size-btn-xs: 0.875rem;     /* 19.25px - Icon buttons with text */
+  
+  /* ===== FORM ELEMENT SIZES ===== */
+  --font-size-input: 1rem;          /* 22px - Input fields (accessible) */
+  --font-size-input-large: 1.125rem;/* 24.75px - Large input fields */
+  --font-size-label: 1rem;          /* 22px - Form labels */
+  --font-size-placeholder: 0.875rem;/* 19.25px - Placeholder text */
+  --font-size-help-text: 0.875rem;  /* 19.25px - Helper/error text */
+  
+  /* ===== NAVIGATION SIZES ===== */
+  --font-size-nav-primary: 1.125rem;  /* 24.75px - Main navigation links */
+  --font-size-nav-secondary: 1rem;    /* 22px - Secondary navigation */
+  --font-size-nav-dropdown: 0.875rem; /* 19.25px - Dropdown items */
+  --font-size-breadcrumb: 0.875rem;   /* 19.25px - Breadcrumb navigation */
+  
+  /* ===== SPECIALIZED SIZES ===== */
+  --font-size-logo: 2.5rem;         /* 55px - Brand logo text */
+  --font-size-hero-title: 3.5rem;   /* 77px - Hero section titles */
+  --font-size-hero-subtitle: 1.25rem;/* 27.5px - Hero subtitles */
+  --font-size-card-title: 1.25rem;  /* 27.5px - Card component titles */
+  --font-size-card-text: 1rem;      /* 22px - Card body text */
+  --font-size-tooltip: 0.875rem;    /* 19.25px - Tooltips and hints */
+  --font-size-badge: 0.8rem;        /* 17.6px - Status badges */
+  --font-size-caption: 0.875rem;    /* 19.25px - Image captions, metadata */
+  
+  /* ===== LINE HEIGHTS ===== */
+  /* Consistent line heights for better readability */
+  --line-height-tight: 1.2;     /* For headings */
+  --line-height-normal: 1.5;    /* For body text */
+  --line-height-relaxed: 1.6;   /* For long-form content */
+  --line-height-loose: 1.8;     /* For enhanced readability */
+  
+  /* ===== FONT WEIGHTS ===== */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  
+  /* ===== LETTER SPACING ===== */
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
+}
+
+/* ===== RESPONSIVE FONT SCALING ===== */
+/* Tablet adjustments */
+@media screen and (max-width: 768px) {
+  :root {
+    /* Slightly reduce base size for tablets while maintaining accessibility */
+    font-size: 20px; /* 1rem = 20px on tablets */
+    
+    --font-size-hero-title: 3rem;   /* 60px - Smaller hero on tablets */
+    --font-size-h1: 2.5rem;         /* 50px - Reduced heading sizes */
+    --font-size-h2: 2rem;           /* 40px */
+    --font-size-logo: 2rem;         /* 40px - Smaller logo */
+  }
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 480px) {
+  :root {
+    /* Maintain 18px minimum on mobile (still above 16px accessibility requirement) */
+    font-size: 18px; /* 1rem = 18px on mobile */
+    
+    --font-size-hero-title: 2.5rem; /* 45px - Mobile hero */
+    --font-size-h1: 2rem;           /* 36px - Mobile headings */
+    --font-size-h2: 1.75rem;        /* 31.5px */
+    --font-size-h3: 1.5rem;         /* 27px */
+    --font-size-logo: 1.75rem;      /* 31.5px - Mobile logo */
+    
+    /* Ensure buttons remain accessible on mobile */
+    --font-size-btn-large: 1.25rem; /* 22.5px */
+    --font-size-btn-medium: 1.125rem; /* 20.25px */
+  }
+}
+
+/* Large screens - enhance readability */
+@media screen and (min-width: 1200px) {
+  :root {
+    /* Larger base size for large screens */
+    font-size: 24px; /* 1rem = 24px on large screens */
+    
+    --font-size-hero-title: 4rem;   /* 96px - Impressive on large screens */
+    --font-size-h1: 3.5rem;         /* 84px */
+    --font-size-logo: 3rem;         /* 72px */
+  }
+}
+
+/* ===== UTILITY CLASSES FOR COMMON FONT SIZES ===== */
+.font-size-h1 { font-size: var(--font-size-h1); line-height: var(--line-height-tight); }
+.font-size-h2 { font-size: var(--font-size-h2); line-height: var(--line-height-tight); }
+.font-size-h3 { font-size: var(--font-size-h3); line-height: var(--line-height-tight); }
+.font-size-h4 { font-size: var(--font-size-h4); line-height: var(--line-height-tight); }
+.font-size-h5 { font-size: var(--font-size-h5); line-height: var(--line-height-tight); }
+.font-size-h6 { font-size: var(--font-size-h6); line-height: var(--line-height-tight); }
+
+.font-size-body { font-size: var(--font-size-body); line-height: var(--line-height-normal); }
+.font-size-body-large { font-size: var(--font-size-body-large); line-height: var(--line-height-normal); }
+.font-size-body-small { font-size: var(--font-size-body-small); line-height: var(--line-height-normal); }
+
+.font-size-btn-large { font-size: var(--font-size-btn-large); }
+.font-size-btn-medium { font-size: var(--font-size-btn-medium); }
+.font-size-btn-small { font-size: var(--font-size-btn-small); }
+
+/* ===== SEMANTIC HTML ELEMENT STYLING ===== */
+h1 { 
+  font-size: var(--font-size-h1); 
+  line-height: var(--line-height-tight);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+h2 { 
+  font-size: var(--font-size-h2); 
+  line-height: var(--line-height-tight);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+h3 { 
+  font-size: var(--font-size-h3); 
+  line-height: var(--line-height-tight);
+  font-weight: var(--font-weight-semibold);
+}
+
+h4 { 
+  font-size: var(--font-size-h4); 
+  line-height: var(--line-height-tight);
+  font-weight: var(--font-weight-semibold);
+}
+
+h5 { 
+  font-size: var(--font-size-h5); 
+  line-height: var(--line-height-normal);
+  font-weight: var(--font-weight-medium);
+}
+
+h6 { 
+  font-size: var(--font-size-h6); 
+  line-height: var(--line-height-normal);
+  font-weight: var(--font-weight-medium);
+}
+
+body, p { 
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-normal);
+  font-weight: var(--font-weight-normal);
+}
+
+button {
+  font-size: var(--font-size-btn-medium);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+}
+
+input, textarea, select {
+  font-size: var(--font-size-input);
+  line-height: var(--line-height-normal);
+}
+
+label {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+}
+
+small {
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-normal);
+}
+
+/* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+/* High contrast mode - ensure font sizes remain readable */
+@media (prefers-contrast: high) {
+  :root {
+    /* Slightly increase font weights for better visibility in high contrast */
+    --font-weight-normal: 500;
+    --font-weight-medium: 600;
+    --font-weight-semibold: 700;
+  }
+}
+
+/* Reduced motion - keep font sizes stable */
+@media (prefers-reduced-motion: reduce) {
+  /* Font sizes remain the same - no motion-based scaling */
+}
+
+/* User font size preferences - support 200% scaling */
+@media screen and (min-resolution: 2dppx) {
+  :root {
+    /* Enhance font sizes for high-DPI displays */
+    font-size: 24px;
+  }
+}
+
+/* ===== COMPONENT-SPECIFIC SIZES ===== */
+/* Navigation */
+.nav-primary { font-size: var(--font-size-nav-primary); }
+.nav-secondary { font-size: var(--font-size-nav-secondary); }
+.nav-dropdown { font-size: var(--font-size-nav-dropdown); }
+.breadcrumb { font-size: var(--font-size-breadcrumb); }
+
+/* Cards */
+.card-title { font-size: var(--font-size-card-title); font-weight: var(--font-weight-semibold); }
+.card-text { font-size: var(--font-size-card-text); }
+
+/* Hero sections */
+.hero-title { font-size: var(--font-size-hero-title); line-height: var(--line-height-tight); }
+.hero-subtitle { font-size: var(--font-size-hero-subtitle); line-height: var(--line-height-normal); }
+
+/* Logo */
+.logo { font-size: var(--font-size-logo); font-weight: var(--font-weight-bold); }
+
+/* Status and utility text */
+.tooltip { font-size: var(--font-size-tooltip); }
+.badge { font-size: var(--font-size-badge); font-weight: var(--font-weight-medium); }
+.caption { font-size: var(--font-size-caption); line-height: var(--line-height-normal); }
+.help-text { font-size: var(--font-size-help-text); line-height: var(--line-height-normal); }
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  :root {
+    /* Optimize font sizes for print */
+    font-size: 12pt; /* Standard print size */
+    
+    --font-size-h1: 18pt;
+    --font-size-h2: 16pt;
+    --font-size-h3: 14pt;
+    --font-size-body: 12pt;
+    --font-size-body-small: 10pt;
+  }
+}

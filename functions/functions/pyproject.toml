@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "functions-general"
+version = "1.0.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+package-mode = false
+packages = [{include = "functions"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+firebase-admin = "6.5.0"
+google-cloud-aiplatform = "1.113.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,427 @@
+/* ===============================================
+   KALAIKATHA OPTIMIZED TYPOGRAPHY SYSTEM
+   
+   PERFORMANCE FIRST APPROACH:
+   - Using only 2-3 font families maximum
+   - Prioritizing system fonts (no download required)
+   - Optimized for low-range devices and slow connections
+   - Creating hierarchy through weights, sizes, and spacing
+   
+   FONT STRATEGY:
+   1. PRIMARY: System fonts (-apple-system, Segoe UI, etc.)
+      - Used for: body text, UI, forms, buttons
+      - Fastest loading, always available
+   
+   2. HEADING: Same as primary (different weights for hierarchy)  
+      - Used for: all headings (h1-h6)
+      - Creates hierarchy through font-weight and size
+   
+   3. BRAND: Georgia/Times serif (minimal usage)
+      - Used only for: KALAIKATHA brand text
+      - System serif, no download required
+   
+   NO CUSTOM FONTS: No web fonts = faster loading
+   NO MONOSPACE: Using letter-spacing instead
+=============================================== */
+
+/* Import the centralized font size guide */
+@import './font-size-guide.css';
+@import './color-palette.css';
+
+/* ===== OPTIMIZED FONT FAMILY DEFINITIONS ===== */
+/* Using only 2-3 font families for performance optimization */
+/* Suitable for low-range devices and better loading times */
+:root {
+  /* PRIMARY FONT - System fonts (fastest loading, no download required) */
+  /* Used for: body text, UI elements, forms, buttons */
+  --font-family-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", 
+                         "Helvetica Neue", Arial, sans-serif;
+  
+  /* HEADING FONT - Same as primary but will use different weights/sizes */
+  /* Used for: all headings (h1-h6), using font-weight for hierarchy */
+  --font-family-heading: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", 
+                         "Helvetica Neue", Arial, sans-serif;
+  
+  /* BRAND FONT - Serif for brand name only (minimal usage) */
+  /* Used only for: KALAIKATHA brand text */
+  --font-family-brand: "Georgia", "Times New Roman", serif;
+  
+  /* NO MONOSPACE - Using primary font with letter-spacing for code-like text */
+}
+
+/* ===== FONT WEIGHT HIERARCHY ===== */
+/* Create contrast and hierarchy using weights within same font family */
+:root {
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+/* Optimized for low-range devices and slow connections */
+
+/* Force system fonts on mobile for faster loading */
+@media (max-width: 768px) {
+  :root {
+    --font-family-brand: -apple-system, BlinkMacSystemFont, "Segoe UI", serif;
+  }
+}
+
+/* Reduce font variations on low-end devices */
+@media (max-width: 480px) {
+  * {
+    font-variant-ligatures: none; /* Disable ligatures for performance */
+    text-rendering: optimizeSpeed; /* Prioritize speed over quality */
+  }
+}
+
+/* ===== GLOBAL TYPOGRAPHY SETTINGS ===== */
+/* Create hierarchy through size, weight, and spacing */
+
+/* Font weight utilities */
+.font-light { font-weight: var(--font-weight-light); }
+.font-normal { font-weight: var(--font-weight-normal); }
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+.font-extrabold { font-weight: var(--font-weight-extrabold); }
+
+/* Font style utilities */
+.not-italic { font-style: normal; }
+
+/* Letter spacing for emphasis (instead of monospace) */
+.tracking-tight { letter-spacing: -0.025em; }
+.tracking-normal { letter-spacing: 0; }
+.tracking-wide { letter-spacing: 0.025em; }
+.tracking-wider { letter-spacing: 0.05em; }
+.tracking-widest { letter-spacing: 0.1em; }
+
+/* Text transform utilities */
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.capitalize { text-transform: capitalize; }
+* {
+  /* Better text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  /* Set base font size from font-size-guide.css */
+  font-family: var(--font-family-primary);
+  color: var(--text-primary);
+  line-height: var(--line-height-normal);
+  
+  /* Improve text selection */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-normal);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-normal);
+}
+
+/* ===== ENHANCED HEADING STYLES ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading);
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+  font-feature-settings: "liga" 1, "kern" 1;
+}
+
+/* Brand-specific heading style */
+.heading-brand {
+  font-family: var(--font-family-brand);
+  color: var(--brand-primary);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* ===== TEXT UTILITY CLASSES ===== */
+/* Font weights */
+.font-light { font-weight: var(--font-weight-light); }
+.font-normal { font-weight: var(--font-weight-normal); }
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+.font-extrabold { font-weight: var(--font-weight-extrabold); }
+
+/* Text colors from color palette */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-inverse { color: var(--text-inverse); }
+.text-brand { color: var(--brand-primary); }
+.text-accent { color: var(--brand-accent); }
+.text-error { color: var(--text-error); }
+.text-success { color: var(--text-success); }
+.text-warning { color: var(--text-warning); }
+
+/* Text alignment */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-justify { text-align: justify; }
+
+/* Line heights */
+.leading-tight { line-height: var(--line-height-tight); }
+.leading-normal { line-height: var(--line-height-normal); }
+.leading-relaxed { line-height: var(--line-height-relaxed); }
+.leading-loose { line-height: var(--line-height-loose); }
+
+/* Letter spacing */
+.tracking-tight { letter-spacing: var(--letter-spacing-tight); }
+.tracking-normal { letter-spacing: var(--letter-spacing-normal); }
+.tracking-wide { letter-spacing: var(--letter-spacing-wide); }
+.tracking-wider { letter-spacing: var(--letter-spacing-wider); }
+.tracking-widest { letter-spacing: var(--letter-spacing-widest); }
+
+/* Text transforms */
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.capitalize { text-transform: capitalize; }
+.normal-case { text-transform: none; }
+
+/* Text decoration */
+.underline { text-decoration: underline; }
+.line-through { text-decoration: line-through; }
+.no-underline { text-decoration: none; }
+
+/* ===== ENHANCED FORM TYPOGRAPHY ===== */
+input, textarea, select {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-input);
+  line-height: var(--line-height-normal);
+  color: var(--text-primary);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+  font-size: var(--font-size-placeholder);
+}
+
+label {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.label-required::after {
+  content: " *";
+  color: var(--text-error);
+}
+
+/* Help text and form feedback */
+.help-text {
+  font-size: var(--font-size-help-text);
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.error-text {
+  font-size: var(--font-size-help-text);
+  color: var(--text-error);
+  margin-top: 0.25rem;
+}
+
+.success-text {
+  font-size: var(--font-size-help-text);
+  color: var(--text-success);
+  margin-top: 0.25rem;
+}
+
+/* ===== BUTTON TYPOGRAPHY ===== */
+button {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: none;
+  line-height: var(--line-height-tight);
+}
+
+.btn-primary {
+  font-size: var(--font-size-btn-large);
+  font-weight: var(--font-weight-bold);
+}
+
+.btn-secondary {
+  font-size: var(--font-size-btn-medium);
+  font-weight: var(--font-weight-semibold);
+}
+
+.btn-small {
+  font-size: var(--font-size-btn-small);
+  font-weight: var(--font-weight-medium);
+}
+
+/* ===== LINK STYLES ===== */
+a {
+  color: var(--text-link);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--text-link-hover);
+  text-decoration: underline;
+}
+
+a:focus {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ===== SPECIALTY TEXT STYLES ===== */
+/* Logo text */
+.logo-text {
+  font-family: var(--font-family-brand);
+  font-size: var(--font-size-logo);
+  font-weight: var(--font-weight-bold);
+  color: var(--brand-primary);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+}
+
+/* Hero text */
+.hero-title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-hero-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.hero-subtitle {
+  font-size: var(--font-size-hero-subtitle);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+  color: var(--text-secondary);
+}
+
+/* Card text */
+.card-title {
+  font-size: var(--font-size-card-title);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  font-size: var(--font-size-card-text);
+  line-height: var(--line-height-normal);
+  color: var(--text-secondary);
+}
+
+/* Navigation text */
+.nav-link {
+  font-size: var(--font-size-nav-primary);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* Status badges and tags */
+.badge {
+  font-size: var(--font-size-badge);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-widest);
+}
+
+/* Captions and metadata */
+.caption {
+  font-size: var(--font-size-caption);
+  color: var(--text-muted);
+  line-height: var(--line-height-normal);
+}
+
+/* Code and preformatted text */
+code, pre {
+  font-family: var(--font-family-mono);
+  font-size: 0.9rem;
+  background-color: var(--bg-secondary);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+}
+
+pre {
+  padding: 1rem;
+  overflow-x: auto;
+  line-height: var(--line-height-relaxed);
+}
+
+/* ===== RESPONSIVE TYPOGRAPHY UTILITIES ===== */
+/* Show/hide text based on screen size */
+@media screen and (max-width: 768px) {
+  .text-hide-mobile { display: none; }
+  .text-truncate-mobile {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .text-hide-desktop { display: none; }
+}
+
+/* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+/* Focus visible styles */
+*:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Screen reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: var(--font-weight-bold);
+  }
+  
+  .text-muted {
+    color: var(--text-secondary);
+  }
+}
+
+/* Print optimizations */
+@media print {
+  * {
+    color: black !important;
+    background: white !important;
+  }
+  
+  a {
+    text-decoration: underline;
+  }
+  
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+}

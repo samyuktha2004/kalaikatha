@@ -1,0 +1,363 @@
+/* AddProductFlow Styles - AI-Powered Product Creation */
+
+.add-product-flow {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #ffd380 0%, #fff8e1 100%);
+  min-height: 100vh;
+}
+
+.flow-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.flow-header h1 {
+  color: #283593;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+/* Progress Bar */
+.progress-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.progress-step {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border: 3px solid #ddd;
+  background: #fff;
+  color: #999;
+  transition: all 0.3s ease;
+}
+
+.progress-step.completed {
+  background: #4caf50;
+  border-color: #4caf50;
+  color: white;
+}
+
+.progress-step.active {
+  background: #283593;
+  border-color: #283593;
+  color: white;
+  transform: scale(1.1);
+}
+
+/* Step Content */
+.step-content {
+  background: white;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.step-content h2 {
+  color: #283593;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.step-content p {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+/* Image Upload */
+.image-upload-area {
+  border: 3px dashed #283593;
+  border-radius: 15px;
+  padding: 4rem 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #f8f9ff;
+}
+
+.image-upload-area:hover {
+  background: #e8eaff;
+  border-color: #3f51b5;
+}
+
+.upload-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.uploaded-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.uploaded-images img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Voice Recording */
+.voice-recorder {
+  margin: 2rem 0;
+}
+
+.record-btn {
+  background: #e67e22;
+  color: white;
+  border: none;
+  padding: 1.5rem 3rem;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3);
+}
+
+.record-btn:hover {
+  background: #d35400;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(230, 126, 34, 0.4);
+}
+
+.record-btn.recording {
+  background: #e74c3c;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.recording-indicator {
+  margin-top: 1rem;
+  color: #e74c3c;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.pulse {
+  width: 15px;
+  height: 15px;
+  background: #e74c3c;
+  border-radius: 50%;
+  animation: pulse-dot 1s infinite;
+}
+
+@keyframes pulse-dot {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+.voice-tips {
+  background: #e8f5e8;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.voice-tips h4 {
+  color: #2e7d32;
+  margin-bottom: 1rem;
+}
+
+.voice-tips ul {
+  color: #4a4a4a;
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.voice-tips li {
+  margin-bottom: 0.5rem;
+}
+
+/* AI Processing */
+.loading-animation {
+  padding: 2rem;
+}
+
+.ai-brain {
+  font-size: 5rem;
+  animation: rotate 2s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.ai-process-steps {
+  text-align: left;
+  max-width: 400px;
+  margin: 2rem auto;
+}
+
+.process-step {
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.process-step.completed {
+  background: #e8f5e8;
+  color: #2e7d32;
+}
+
+.process-step.active {
+  background: #e3f2fd;
+  color: #1976d2;
+  animation: pulse 1.5s infinite;
+}
+
+/* Content Preview */
+.content-preview {
+  text-align: left;
+  margin: 2rem 0;
+}
+
+.content-box {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border-left: 4px solid #283593;
+  margin: 1rem 0 2rem 0;
+  line-height: 1.6;
+}
+
+.keywords-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.keyword-tag {
+  background: #283593;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.fallback-message {
+  background: #fff3cd;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 1px solid #ffeaa7;
+  color: #8b6500;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-primary {
+  background: #4caf50;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #45a049;
+  transform: translateY(-2px);
+}
+
+.btn-primary:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: #f0f0f0;
+  color: #333;
+  border: 2px solid #ddd;
+}
+
+.btn-secondary:hover {
+  background: #e0e0e0;
+  border-color: #bbb;
+}
+
+/* Error Message */
+.error-message {
+  background: #ffebee;
+  color: #c62828;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+  text-align: center;
+  border: 1px solid #ef5350;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .add-product-flow {
+    padding: 1rem;
+  }
+  
+  .step-content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .flow-header h1 {
+    font-size: 2rem;
+  }
+  
+  .progress-bar {
+    gap: 0.5rem;
+  }
+  
+  .progress-step {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+  }
+  
+  .uploaded-images {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+}

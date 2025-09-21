@@ -1,0 +1,237 @@
+/* ===============================================
+   CENTRALIZED COLOR PALETTE SYSTEM
+   Purpose-based color definitions for consistent theming
+   Edit colors here to reflect changes across the entire app
+=============================================== */
+
+:root {
+  /* ===== 60-30-10 COLOR RULE IMPLEMENTATION ===== */
+  
+  /* 60% - DOMINANT COLOR (Background, cards, containers) */
+  --dominant-color: #f4f0e4;
+  --dominant-light: #f9f6ed;
+  --dominant-dark: #ede7d8;
+  --dominant-darker: #e6dcc9;
+  
+  /* 30% - SECONDARY COLOR (Headers, sidebars, sections) */
+  --secondary-color: #c0795a;
+  --secondary-light: #d0916f;
+  --secondary-dark: #a96140;
+  --secondary-darker: #934d2c;
+  
+  /* 10% - ACCENT COLOR (CTAs, buttons, icons, important text) */
+  --accent-color: #8b4513;
+  --accent-light: #a0552b;
+  --accent-dark: #6d3410;
+  --accent-contrast: #ffffff;
+  
+  /* ===== PRIMARY BRAND COLORS (Based on 60-30-10 Rule) ===== */
+  --brand-primary: var(--accent-color);
+  --brand-primary-light: var(--accent-light);
+  --brand-primary-dark: var(--accent-dark);
+  --brand-primary-darker: #4a240a;
+  
+  --brand-secondary: var(--dominant-color);
+  --brand-secondary-dark: var(--dominant-dark);
+  --brand-accent: var(--secondary-color);
+  --brand-accent-light: var(--secondary-light);
+  
+  /* ===== NAVIGATION COLORS (30% Secondary) ===== */
+  --nav-background: var(--secondary-color);
+  --nav-background-hover: var(--secondary-dark);
+  --nav-text: #ffffff;
+  --nav-text-hover: #f0f4f8;
+  --nav-link-active: var(--secondary-darker);
+  --nav-border: rgba(255, 255, 255, 0.1);
+  
+  /* ===== HEADER & TITLE COLORS (30% Secondary + 10% Accent) ===== */
+  --header-primary: var(--secondary-color);
+  --header-secondary: var(--secondary-dark);
+  --header-subtitle: var(--secondary-light);
+  --header-accent: var(--accent-color);
+  
+  /* ===== BUTTON COLORS (10% Accent for CTAs) ===== */
+  /* Primary Buttons - Accent Color for CTAs */
+  --btn-primary-bg: var(--accent-color);
+  --btn-primary-bg-hover: var(--accent-dark);
+  --btn-primary-bg-active: #4a240a;
+  --btn-primary-text: #ffffff;
+  --btn-primary-border: var(--accent-color);
+  
+  /* Secondary Buttons - Secondary Color */
+  --btn-secondary-bg: var(--secondary-color);
+  --btn-secondary-bg-hover: var(--secondary-dark);
+  --btn-secondary-bg-active: var(--secondary-darker);
+  --btn-secondary-text: #ffffff;
+  --btn-secondary-border: var(--secondary-color);
+  
+  /* Outline Buttons - Dominant Background */
+  --btn-outline-bg: var(--dominant-color);
+  --btn-outline-bg-hover: var(--dominant-dark);
+  --btn-outline-text: var(--accent-color);
+  --btn-outline-text-hover: var(--accent-dark);
+  --btn-outline-border: var(--accent-color);
+  
+  /* Success Buttons */
+  --btn-success-bg: #6b8e23;
+  --btn-success-bg-hover: #5a7a1c;
+  --btn-success-bg-active: #4a6616;
+  --btn-success-text: #ffffff;
+  --btn-success-border: #6b8e23;
+  
+  /* Danger/Error Buttons */
+  --btn-danger-bg: #cd5c5c;
+  --btn-danger-bg-hover: #b84c4c;
+  --btn-danger-bg-active: #a23c3c;
+  --btn-danger-text: #ffffff;
+  --btn-danger-border: #cd5c5c;
+  
+  /* Warning Buttons */
+  --btn-warning-bg: #daa520;
+  --btn-warning-bg-hover: #b8861a;
+  --btn-warning-bg-active: #996714;
+  --btn-warning-text: #ffffff;
+  --btn-warning-border: #daa520;
+  
+  /* ===== TEXT COLORS ===== */
+  --text-primary: #2d1810;
+  --text-secondary: var(--secondary-dark);
+  --text-muted: #8b7355;
+  --text-disabled: #b5a48a;
+  --text-inverse: #ffffff;
+  --text-link: var(--accent-color);
+  --text-link-hover: var(--accent-dark);
+  --text-error: #cd5c5c;
+  --text-success: #6b8e23;
+  --text-warning: #daa520;
+  
+  /* ===== LOGIN PAGE SPECIFIC COLORS (Now Global) ===== */
+  --login-text-dark: #2d1810;
+  --login-border-light: #ede7d8;
+  --login-bg-cream: #f9f6ed;
+  --login-bg-white: #ffffff;
+  --login-container-bg: #f4f0e4;
+  --login-focus-ring: rgba(139, 69, 19, 0.1);
+  --login-gradient-start: #c0795a;
+  --login-gradient-end: #8b4513;
+  
+  /* ===== BACKGROUND COLORS (60% Dominant) ===== */
+  --bg-primary: var(--dominant-color);
+  --bg-secondary: var(--dominant-light);
+  --bg-tertiary: var(--dominant-dark);
+  --bg-dark: var(--secondary-darker);
+  --bg-overlay: rgba(45, 24, 16, 0.5);
+  
+  /* Hero Section Backgrounds - Gradient from Secondary to Accent */
+  --bg-hero-start: var(--secondary-color);
+  --bg-hero-end: var(--accent-color);
+  --bg-hero-gradient: linear-gradient(135deg, var(--bg-hero-start) 0%, var(--bg-hero-end) 100%);
+  
+  /* Section Backgrounds - Dominant Color Variations */
+  --bg-section-light: var(--dominant-light);
+  --bg-section-gradient: linear-gradient(135deg, var(--dominant-color) 0%, var(--dominant-dark) 100%);
+  
+  /* ===== BORDER COLORS ===== */
+  --border-light: var(--dominant-darker);
+  --border-medium: var(--secondary-light);
+  --border-dark: var(--secondary-color);
+  --border-focus: var(--accent-color);
+  --border-error: #cd5c5c;
+  --border-success: #6b8e23;
+  
+  /* ===== CARD & CONTAINER COLORS (60% Dominant) ===== */
+  --card-bg: var(--dominant-color);
+  --card-bg-hover: var(--dominant-light);
+  --card-border: var(--dominant-darker);
+  --card-shadow: rgba(192, 121, 90, 0.1);
+  --card-shadow-hover: rgba(192, 121, 90, 0.15);
+  
+  /* ===== INPUT & FORM COLORS ===== */
+  --input-bg: var(--dominant-light);
+  --input-bg-focus: var(--dominant-color);
+  --input-bg-disabled: var(--dominant-dark);
+  --input-text: var(--text-primary);
+  --input-text-placeholder: var(--text-muted);
+  --input-border: var(--border-light);
+  --input-border-focus: var(--accent-color);
+  --input-border-error: var(--border-error);
+  
+  /* Login form specific variables (now global) */
+  --form-input-bg: var(--login-bg-cream);
+  --form-input-bg-focus: var(--login-bg-white);
+  --form-input-border: var(--login-border-light);
+  --form-input-border-focus: var(--accent-color);
+  --form-input-text: var(--login-text-dark);
+  --form-input-focus-ring: var(--login-focus-ring);
+  
+  /* ===== STATUS COLORS ===== */
+  --status-success: #6b8e23;
+  --status-success-light: #e8f5d0;
+  --status-error: #cd5c5c;
+  --status-error-light: #f5e3e3;
+  --status-warning: #daa520;
+  --status-warning-light: #f5f0d8;
+  --status-info: var(--secondary-color);
+  --status-info-light: #f2ebe6;
+  
+  /* ===== UTILITY COLORS ===== */
+  --shadow-sm: 0 1px 3px rgba(192, 121, 90, 0.1);
+  --shadow-md: 0 4px 6px rgba(192, 121, 90, 0.1);
+  --shadow-lg: 0 10px 15px rgba(192, 121, 90, 0.1);
+  --shadow-xl: 0 20px 25px rgba(192, 121, 90, 0.1);
+  
+  /* Gradients following 60-30-10 rule */
+  --gradient-primary: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-light) 100%);
+  --gradient-accent: linear-gradient(135deg, var(--dominant-color) 0%, var(--dominant-light) 100%);
+}
+
+/* ===== DARK MODE SUPPORT ===== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Override colors for dark mode */
+    --bg-primary: #1a202c;
+    --bg-secondary: #2d3748;
+    --bg-tertiary: #4a5568;
+    
+    --text-primary: #f7fafc;
+    --text-secondary: #e2e8f0;
+    --text-muted: #a0aec0;
+    
+    --card-bg: #2d3748;
+    --card-bg-hover: #4a5568;
+    
+    --input-bg: #2d3748;
+    --input-bg-focus: #4a5568;
+    --input-bg-disabled: #1a202c;
+    
+    --border-light: #4a5568;
+    --border-medium: #718096;
+    --border-dark: #a0aec0;
+  }
+}
+
+/* ===== ACCESSIBILITY COLORS ===== */
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --brand-primary: #4c63d2;
+    --brand-primary-dark: #3b4ec7;
+    --text-primary: #000000;
+    --text-secondary: #2d3748;
+    --border-light: #2d3748;
+    --border-medium: #1a202c;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    /* Disable gradients for users who prefer reduced motion */
+    --gradient-primary: var(--brand-primary);
+    --gradient-secondary: var(--brand-secondary);
+    --gradient-accent: var(--brand-accent);
+    --bg-hero-gradient: var(--brand-primary);
+    --bg-section-gradient: var(--brand-secondary);
+  }
+}

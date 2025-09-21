@@ -1,0 +1,2 @@
+firebase-admin==7.1.0
+google-cloud-texttospeech==2.29.0

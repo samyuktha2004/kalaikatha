@@ -1,0 +1,348 @@
+/* ===============================================
+   CUSTOMER HOME PAGE STYLES
+   Integrated with Color Palette System
+=============================================== */
+
+@import './color-palette.css';
+@import './utilities.css';
+
+/* Customer Home Page Container */
+.customer-home-container {
+  min-height: 100vh;
+  background-color: #ffd380;
+  color: var(--text-primary);
+  padding: 1rem;
+  padding-top: 80px;
+}
+
+/* Navigation Sticky Enhancement */
+body {
+  margin: 0;
+  padding: 0;
+  padding-top: 80px; /* Add space for fixed navigation */
+}
+
+/* Navigation Fixed - Force to stay on screen */
+.nav-responsive {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 1020 !important;
+}
+
+/* Additional fixed support for the navigation container */
+nav.nav-responsive {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 1020 !important;
+}
+
+/* Language Dropdown Button - Remove Glass Effect */
+.dropdown-container button {
+  background: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  outline: none !important;
+}
+
+/* Language Dropdown Button - Remove Glass Effect */
+.dropdown-container button {
+  background: transparent !important;
+  border: 2px solid rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: none !important;
+}
+
+.dropdown-container button:hover {
+  border-color: rgba(255, 255, 255, 1) !important;
+  background: transparent !important;
+}
+
+/* Login Button - Match Home and Products Button Size */
+nav a[href="/login"] {
+  padding: 12px 16px !important;
+  font-size: clamp(1rem, 3vw, 1.1rem) !important;
+  min-height: 44px !important;
+}
+
+/* Add top padding to body content to account for fixed nav */
+.customer-home-container {
+  padding-top: 80px;
+}
+
+/* Ensure smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(to right, #f9b16e, #f68080) !important;
+  color: #ffffff !important;
+  padding: 4rem 2rem;
+  text-align: center;
+  border-radius: 12px;
+  margin: 2rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 1rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-inverse);
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  margin-bottom: 2rem;
+  opacity: 1;
+  color: #ffffff !important;
+  line-height: 1.4;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  font-weight: 500;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary-hero {
+  background-color: #ffffff;
+  color: #f68080;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: var(--font-weight-bold);
+  border: none;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary-hero:hover {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  color: #f68080 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary-hero {
+  background-color: #f68080;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: var(--font-weight-bold);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-secondary-hero:hover {
+  background-color: rgba(246, 128, 128, 0.9) !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  transition: all 0.3s ease !important;
+}
+
+/* AI Tools Section */
+.ai-tools-section {
+  margin: 3rem 0;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+  font-size: 2.5rem;
+  font-weight: var(--font-weight-bold);
+}
+
+.ai-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.ai-tool-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  text-decoration: none !important;
+  color: var(--text-primary);
+  display: block;
+  transition: none !important;
+}
+
+.ai-tool-card:hover {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-light) !important;
+  text-decoration: none !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.ai-tool-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.ai-tool-title {
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-semibold);
+  margin: 0;
+  text-decoration: none !important;
+}
+
+/* Voice Assistant Button */
+.voice-button-floating {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  background-color: #ffffff !important;
+  color: #283593 !important;
+  border: 2px solid #283593 !important;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.5rem;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(40, 53, 147, 0.3);
+}
+
+.voice-button-floating:hover {
+  background-color: #f8f9fa !important;
+  color: #1a237e !important;
+  border: 2px solid #1a237e !important;
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(40, 53, 147, 0.4);
+}
+
+/* Loading Overlay */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-overlay);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-content {
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-semibold);
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 2rem 1rem;
+    margin: 1rem 0;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn-primary-hero,
+  .btn-secondary-hero {
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .ai-tools-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0.5rem;
+  }
+  
+  .voice-button-floating {
+    bottom: 1rem;
+    right: 1rem;
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .customer-home-container {
+    padding: 0.5rem;
+  }
+  
+  .hero-section {
+    border-radius: 0.75rem;
+    padding: 1.5rem 1rem;
+  }
+  
+  .hero-title {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+  }
+  
+  .hero-subtitle {
+    font-size: clamp(1rem, 4vw, 1.25rem);
+  }
+  
+  .ai-tool-card {
+    padding: 1.5rem;
+  }
+  
+  .ai-tool-icon {
+    font-size: 2.5rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .ai-tool-card {
+    border-width: 2px;
+  }
+  
+  .btn-primary-hero,
+  .btn-secondary-hero {
+    border-width: 2px;
+  }
+}

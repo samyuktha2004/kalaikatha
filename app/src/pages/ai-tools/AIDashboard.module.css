@@ -1,0 +1,437 @@
+/* AIDashboard.module.css - Optimized styles for low-budget phones */
+
+.container {
+  padding: 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  font-family: var(--font-family-primary);
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.headerContent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (min-width: 480px) {
+  .headerContent {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.title {
+  color: var(--text-primary);
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+@media (min-width: 480px) {
+  .title {
+    font-size: 2.2rem;
+  }
+}
+
+.headerControls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #ffffff;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.viewModeButton {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.viewModeButtonCompact {
+  background-color: #4caf50;
+  color: white;
+}
+
+.viewModeButtonFull {
+  background-color: #f5f5f5;
+  color: var(--text-primary);
+}
+
+.subtitle {
+  color: #666;
+  margin: 8px 0 0 0;
+  font-size: 14px;
+}
+
+.card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.loadingContainer {
+  padding: 20px;
+  text-align: center;
+  background-color: #f5f5f5;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadingSpinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #ddd;
+  border-top: 3px solid #4caf50;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loadingTitle {
+  margin: 0 0 8px 0;
+  color: var(--text-primary);
+}
+
+.loadingSubtitle {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.overviewGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.metricCard {
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.metricIcon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.metricValue {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.metricLabel {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.toolPerformanceContainer {
+  margin-bottom: 20px;
+}
+
+.toolPerformanceTitle {
+  color: #283593;
+  margin-bottom: 15px;
+}
+
+.toolPerformanceList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.toolItem {
+  border: 1px solid #a1887f;
+  border-radius: 8px;
+  padding: 12px;
+  background-color: #ffffff;
+}
+
+.toolHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.toolName {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.toolUsage {
+  font-size: 12px;
+  color: #666;
+}
+
+.toolMetrics {
+  display: flex;
+  gap: 8px;
+}
+
+.toolMetricContainer {
+  flex: 1;
+}
+
+.toolMetricLabel {
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.toolProgressBar {
+  width: 100%;
+  height: 4px;
+  background-color: #e9ecef;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.toolProgress {
+  height: 100%;
+}
+
+.toolRating {
+  font-size: 12px;
+  color: #666;
+}
+
+.businessImpactContainer {
+  text-align: center;
+}
+
+.businessImpactTitle {
+  color: var(--text-primary);
+  margin-bottom: 15px;
+}
+
+.businessCircleMetric {
+  background: #4caf50;
+  color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.businessCircleLabel {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.businessCircleDesc {
+  font-size: 12px;
+  color: #666;
+}
+
+.businessMetricsGrid {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.businessMetricItem {
+  text-align: center;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+}
+
+.businessMetricValue {
+  font-size: 16px;
+  font-weight: bold;
+  color: #4caf50;
+}
+
+.businessMetricLabel {
+  font-size: 12px;
+  color: #666;
+}
+
+.recentActivityContainer {
+  margin-bottom: 20px;
+}
+
+.recentActivityTitle {
+  color: var(--text-primary);
+  margin-bottom: 15px;
+}
+
+.recentActivityList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.activityItem {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.activityIcon {
+  font-size: 1.2rem;
+  margin-right: 8px;
+}
+
+.activityContent {
+  flex: 1;
+}
+
+.activityAction {
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.activityTime {
+  color: #666;
+  font-size: 11px;
+}
+
+.fullViewGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.weeklyChartTitle {
+  color: #283593;
+  margin-bottom: 15px;
+}
+
+.weeklyChartContainer {
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.weeklyChartGrid {
+  display: flex;
+  gap: 8px;
+  min-width: 300px;
+}
+
+.weeklyDayColumn {
+  flex: 1;
+  text-align: center;
+  min-width: 40px;
+}
+
+.weeklyDayLabel {
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.weeklyBarsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  height: 80px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.weeklyBar {
+  width: 8px;
+  border-radius: 1px;
+  min-height: 2px;
+}
+
+.dataIndicator {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #e8f5e8;
+  border-radius: 6px;
+  border: 1px solid #4caf50;
+  text-align: center;
+  font-size: 12px;
+}
+
+.dataIndicatorLabel {
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+.dataIndicatorText {
+  color: var(--text-primary);
+}
+
+/* Suspense fallback styles */
+.suspenseFallback {
+  text-align: center;
+  padding: 30px;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Responsive optimizations for artisan phones */
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+  
+  .overviewGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  
+  .metricCard {
+    padding: 12px;
+  }
+  
+  .metricIcon {
+    font-size: 1.5rem;
+  }
+  
+  .metricValue {
+    font-size: 1.2rem;
+  }
+  
+  .card {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+}
