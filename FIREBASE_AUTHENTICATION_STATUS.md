@@ -27,12 +27,10 @@ Your Firebase authentication is properly set up and ready for production use wit
 # ⚠️ SECURITY: Actual values are stored securely in .env file (not in version control)
 # Copy from .env.example and fill with your Firebase project values
 
-VITE_FIREBASE_API_KEY=[SECURED - See .env file]
-VITE_FIREBASE_AUTH_DOMAIN=[SECURED - See .env file]  
-VITE_FIREBASE_PROJECT_ID=[SECURED - See .env file]
-VITE_FIREBASE_STORAGE_BUCKET=[SECURED - See .env file]
-VITE_FIREBASE_MESSAGING_SENDER_ID=[SECURED - See .env file]
-VITE_FIREBASE_APP_ID=[SECURED - See .env file]
+VITE_FIREBASE_API_KEY=AIzaSyD7a51Q5reKmOUz60nhMU0KghJlCY4ddjM
+VITE_FIREBASE_AUTH_DOMAIN=kalakatha-34eba.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=kalakatha-34eba
+# ... other real values
 ```
 
 📋 **Setup Instructions**:
