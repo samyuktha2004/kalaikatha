@@ -24,18 +24,11 @@ Your Firebase authentication is properly set up and ready for production use wit
 
 ### **Environment Variables** ✅
 ```env
-<<<<<<< HEAD
-# Environment variables are now properly secured in .env file (not tracked in git)
-# See .env.example for the required environment variable structure
-VITE_FIREBASE_API_KEY=[SECURED - See .env file]
-VITE_FIREBASE_AUTH_DOMAIN=[SECURED - See .env file]
-=======
 # ⚠️ SECURITY: Actual values are stored securely in .env file (not in version control)
 # Copy from .env.example and fill with your Firebase project values
 
 VITE_FIREBASE_API_KEY=[SECURED - See .env file]
 VITE_FIREBASE_AUTH_DOMAIN=[SECURED - See .env file]  
->>>>>>> main
 VITE_FIREBASE_PROJECT_ID=[SECURED - See .env file]
 VITE_FIREBASE_STORAGE_BUCKET=[SECURED - See .env file]
 VITE_FIREBASE_MESSAGING_SENDER_ID=[SECURED - See .env file]
