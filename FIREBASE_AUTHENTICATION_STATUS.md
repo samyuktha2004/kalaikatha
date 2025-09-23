@@ -21,12 +21,14 @@ Your Firebase authentication is properly set up and ready for production use wit
 
 ### **Environment Variables** ✅
 ```env
-VITE_FIREBASE_API_KEY=AIzaSyD7a51Q5reKmOUz60nhMU0KghJlCY4ddjM
-VITE_FIREBASE_AUTH_DOMAIN=kalakatha-34eba.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID=kalakatha-34eba
-VITE_FIREBASE_STORAGE_BUCKET=kalakatha-34eba.firebasestorage.app
-VITE_FIREBASE_MESSAGING_SENDER_ID=527547622840
-VITE_FIREBASE_APP_ID=1:527547622840:web:dd2a777d55c9fb07699b4d
+# Environment variables are now properly secured in .env file (not tracked in git)
+# See .env.example for the required environment variable structure
+VITE_FIREBASE_API_KEY=[SECURED - See .env file]
+VITE_FIREBASE_AUTH_DOMAIN=[SECURED - See .env file]
+VITE_FIREBASE_PROJECT_ID=[SECURED - See .env file]
+VITE_FIREBASE_STORAGE_BUCKET=[SECURED - See .env file]
+VITE_FIREBASE_MESSAGING_SENDER_ID=[SECURED - See .env file]
+VITE_FIREBASE_APP_ID=[SECURED - See .env file]
 ```
 
 ---

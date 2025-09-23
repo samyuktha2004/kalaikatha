@@ -8,13 +8,18 @@
 [![Firebase](https://img.shields.io/badge/firebase-v10.x-orange)](https://firebase.google.com/)
 [![Google Cloud AI](https://img.shields.io/badge/Google%20Cloud%20AI-Enabled-4285f4)](https://cloud.google.com/ai)
 
-## 🚀 **Project Status: Production Ready**
+## � **Security Notice**
+
+**IMPORTANT**: This repository has been secured and all sensitive data has been removed from version control. Please read [SECURITY.md](./SECURITY.md) for setup instructions.
+
+## �🚀 **Project Status: Production Ready**
 
 **✅ All Core Features Implemented**  
 **✅ Optimized Performance & Code Quality**  
 **✅ Earth-Toned Design System Applied**  
 **✅ Firebase Authentication Integrated**  
-**✅ 6 AI Tools Fully Functional**
+**✅ 6 AI Tools Fully Functional**  
+**✅ Security Best Practices Implemented**
 
 ---
 
