@@ -1,8 +1,10 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { MessageCircle, ShoppingCart, X, ChevronLeft, ChevronRight, Play, FileEdit, Heart } from 'lucide-react';
-import { artisansData } from '../../data/mockData';
+import { MessageCircle, ShoppingCart, X, ChevronLeft, ChevronRight, Play, FileEdit, Heart, Users } from 'lucide-react';
 import { useState } from 'react';
 import { useSavedArtisans } from '../../contexts/SavedArtisansContext';
+import { useArtisans } from '../../hooks/useArtisans';
+import { LoadingGrid } from '../common/LoadingSpinner';
+import { EmptyState } from '../common/EmptyState';
 
 interface ArtisanGalleryInlineProps {
   craftId: string | null;
@@ -13,8 +15,10 @@ export function ArtisanGalleryInline({ craftId, onCustomOrder }: ArtisanGalleryI
   const [selectedArtisan, setSelectedArtisan] = useState<any>(null);
   const [showProcess, setShowProcess] = useState(false);
   const { toggleSaveArtisan, isArtisanSaved } = useSavedArtisans();
+  const { artisans, loading, error } = useArtisans();
 
-  const filteredArtisans = artisansData;
+  // TODO: In production, filter by craftId when backend is connected
+  const filteredArtisans = artisans;
 
   const ProductCarousel = ({ products }: { products: any[] }) => {
     const scroll = (direction: 'left' | 'right') => {
@@ -104,51 +108,82 @@ export function ArtisanGalleryInline({ craftId, onCustomOrder }: ArtisanGalleryI
 
   return (
     <>
+      {/* Loading State */}
+      {loading && <LoadingGrid />}
+      
+      {/* Error State */}
+      {error && (
+        <div className="col-span-3">
+          <EmptyState
+            icon={Users}
+            title="Unable to Load Artisans"
+            description="We're having trouble connecting to Azure. Please check your internet connection and try again."
+            action={{
+              label: "Retry",
+              onClick: () => window.location.reload()
+            }}
+          />
+        </div>
+      )}
+      
+      {/* Empty State */}
+      {!loading && !error && filteredArtisans.length === 0 && (
+        <div className="col-span-3">
+          <EmptyState
+            icon={Users}
+            title="No Artisans Yet"
+            description="This craft doesn't have any artisans registered yet. Check back soon as we onboard more talented makers!"
+          />
+        </div>
+      )}
+      
       {/* Instagram Grid View */}
-      <div className="grid grid-cols-3 gap-2 md:gap-3">
-        {filteredArtisans.map((artisan, index) => (
-          <motion.div
-            key={artisan.id}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: index * 0.1 }}
-            className="relative aspect-square rounded-lg overflow-hidden group"
-          >
-            <button
-              onClick={() => setSelectedArtisan(artisan)}
-              className="w-full h-full"
+      {!loading && !error && filteredArtisans.length > 0 && (
+        <div className="grid grid-cols-3 gap-2 md:gap-3">
+          {filteredArtisans.map((artisan, index) => (
+            <motion.div
+              key={artisan.id}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.1 }}
+              className="relative aspect-square rounded-lg overflow-hidden group"
             >
-              <img
-                src={artisan.portrait}
-                alt={artisan.name}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="absolute bottom-2 left-2 right-2">
-                  <p className="text-white text-xs truncate">{artisan.name}</p>
-                  <p className="text-white/80 text-xs">{artisan.craft}</p>
+              <button
+                onClick={() => setSelectedArtisan(artisan)}
+                className="w-full h-full"
+              >
+                <img
+                  src={artisan.portrait}
+                  alt={artisan.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="absolute bottom-2 left-2 right-2">
+                    <p className="text-white text-xs truncate">{artisan.name}</p>
+                    <p className="text-white/80 text-xs">{artisan.craft}</p>
+                  </div>
                 </div>
-              </div>
-            </button>
-            {/* Heart Icon */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleSaveArtisan(artisan.id);
-              }}
-              className="absolute top-2 right-2 p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-all z-10"
-            >
-              <Heart 
-                className={`w-4 h-4 transition-all ${
-                  isArtisanSaved(artisan.id) 
-                    ? 'text-red-500 fill-current' 
-                    : 'text-gray-600'
-                }`} 
-              />
-            </button>
-          </motion.div>
-        ))}
-      </div>
+              </button>
+              {/* Heart Icon */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleSaveArtisan(artisan.id);
+                }}
+                className="absolute top-2 right-2 p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-all z-10"
+              >
+                <Heart 
+                  className={`w-4 h-4 transition-all ${
+                    isArtisanSaved(artisan.id) 
+                      ? 'text-red-500 fill-current' 
+                      : 'text-gray-600'
+                  }`} 
+                />
+              </button>
+            </motion.div>
+          ))}
+        </div>
+      )}
 
       {/* Artisan Detail Modal */}
       <AnimatePresence>

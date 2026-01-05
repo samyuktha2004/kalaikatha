@@ -1,8 +1,10 @@
 import { motion } from 'motion/react';
 import { X, Upload, Calendar, IndianRupee, Clock, Users, Package, MessageCircle, Heart, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
-import { artisansData } from '../../data/mockData';
 import { useSavedArtisans } from '../../contexts/SavedArtisansContext';
+import { useArtisans } from '../../hooks/useArtisans';
+import { useCustomOrders } from '../../hooks/useCustomOrders';
+import { useAuth } from '../../contexts/AuthContext';
 
 interface CustomOrderFormProps {
   isOpen: boolean;
@@ -15,6 +17,9 @@ interface CustomOrderFormProps {
 export function CustomOrderForm({ isOpen, onClose, onSubmit, artisanId, craftId }: CustomOrderFormProps) {
   const [step, setStep] = useState(1);
   const { savedArtisans } = useSavedArtisans();
+  const { artisans } = useArtisans();
+  const { createOrder } = useCustomOrders();
+  const { user } = useAuth();
   
   const [formData, setFormData] = useState({
     productName: '',
@@ -30,13 +35,13 @@ export function CustomOrderForm({ isOpen, onClose, onSubmit, artisanId, craftId 
   });
 
   // Filter artisans who accept commissions
-  const availableArtisans = artisansData.filter(a => 
+  const availableArtisans = artisans.filter(a => 
     a.commissionSettings.acceptingCommissions &&
     (!formData.budget || !a.commissionSettings.minimumBudget || 
      parseFloat(formData.budget) >= a.commissionSettings.minimumBudget)
   );
 
-  const savedArtisansList = artisansData.filter(a => 
+  const savedArtisansList = artisans.filter(a => 
     savedArtisans.includes(a.id) && 
     a.commissionSettings.acceptingCommissions &&
     (!formData.budget || !a.commissionSettings.minimumBudget || 
@@ -44,7 +49,7 @@ export function CustomOrderForm({ isOpen, onClose, onSubmit, artisanId, craftId 
   );
 
   // Get selected artisan if single mode
-  const selectedArtisan = artisanId ? artisansData.find(a => a.id === artisanId) : null;
+  const selectedArtisan = artisanId ? artisans.find(a => a.id === artisanId) : null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

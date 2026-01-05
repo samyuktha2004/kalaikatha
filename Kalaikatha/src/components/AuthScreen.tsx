@@ -21,7 +21,7 @@ const THEMES = {
   },
   artisan: {
     gradient: 'from-amber-600 to-orange-600',
-    bg: 'from-amber-50 via-orange-50 to-red-50 dark:from-gray-900 dark:via-amber-900/20 dark:to-orange-900/20',
+    bg: 'from-amber-50 via-orange-50 to-red-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900',
     badge: 'bg-amber-50 dark:bg-amber-900/20',
     text: 'text-amber-600 dark:text-amber-400',
     ring: 'focus:ring-amber-500',
