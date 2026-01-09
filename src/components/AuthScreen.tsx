@@ -46,6 +46,7 @@ export function AuthScreen({ onSuccess, initialUserType = 'buyer' }: AuthScreenP
   const [isLoading, setIsLoading] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [isListeningName, setIsListeningName] = useState(false);
+  const [error, setError] = useState<string>('');
   const { login, signup } = useAuth();
 
   const theme = THEMES[userType];
@@ -105,6 +106,7 @@ export function AuthScreen({ onSuccess, initialUserType = 'buyer' }: AuthScreenP
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setError(''); // Clear previous errors
 
     try {
       const identifier = loginMethod === 'email' ? email : phone;
@@ -113,9 +115,12 @@ export function AuthScreen({ onSuccess, initialUserType = 'buyer' }: AuthScreenP
       } else {
         await signup(identifier, password, userType, name);
       }
+      // Only call onSuccess if no error was thrown
       onSuccess();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Auth error:', error);
+      // Display the error message to the user
+      setError(error.message || 'An error occurred. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -303,11 +308,19 @@ export function AuthScreen({ onSuccess, initialUserType = 'buyer' }: AuthScreenP
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  minLength={6}
                   className={`${INPUT_BASE_CLASS} ${theme.ring}`}
-                  placeholder="Enter your password"
+                  placeholder="Enter your password (min 6 characters)"
                 />
               </div>
             </div>
+
+            {/* Error Message */}
+            {error && (
+              <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 px-4 py-3 rounded-xl text-sm">
+                {error}
+              </div>
+            )}
 
             {/* Submit Button */}
             <button
