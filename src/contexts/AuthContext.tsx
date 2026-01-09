@@ -39,11 +39,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!auth) {
-      // Fallback to localStorage if Firebase not configured
-      const storedUser = localStorage.getItem('kalaikatha_user');
-      if (storedUser) {
-        setUser(JSON.parse(storedUser));
-      }
+      console.warn('⚠️ Firebase Authentication is not configured. Please check your .env.local file.');
       setLoading(false);
       return;
     }
@@ -83,18 +79,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = async (email: string, password: string, type: 'buyer' | 'artisan') => {
     if (!auth) {
-      // Fallback to mock login
-      const extractedName = email.includes('@') ? email.split('@')[0] : email.slice(0, 10);
-      const mockUser: User = {
-        id: Math.random().toString(36).substr(2, 9),
-        name: extractedName,
-        email,
-        type,
-        avatar: `https://ui-avatars.com/api/?name=${extractedName}&background=random`,
-      };
-      setUser(mockUser);
-      localStorage.setItem('kalaikatha_user', JSON.stringify(mockUser));
-      return;
+      throw new Error('Firebase Authentication is not configured. Please check your environment variables.');
     }
 
     try {
@@ -103,25 +88,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       console.log('✅ Login successful:', userCredential.user.email);
     } catch (error: any) {
       console.error('❌ Login failed:', error);
-      throw new Error(error.message || 'Login failed. Please check your credentials.');
+      
+      // Provide user-friendly error messages
+      if (error.code === 'auth/user-not-found') {
+        throw new Error('No account found with this email. Please sign up first.');
+      } else if (error.code === 'auth/wrong-password') {
+        throw new Error('Incorrect password. Please try again.');
+      } else if (error.code === 'auth/invalid-email') {
+        throw new Error('Invalid email address.');
+      } else if (error.code === 'auth/too-many-requests') {
+        throw new Error('Too many failed attempts. Please try again later.');
+      } else {
+        throw new Error(error.message || 'Login failed. Please check your credentials.');
+      }
     }
   };
 
   const signup = async (email: string, password: string, type: 'buyer' | 'artisan', name?: string) => {
     if (!auth || !db) {
-      // Fallback to mock signup
-      const extractedName = name || (email.includes('@') ? email.split('@')[0] : '');
-      const mockUser: User = {
-        id: Math.random().toString(36).substr(2, 9),
-        name: extractedName,
-        email,
-        type,
-        avatar: extractedName ? `https://ui-avatars.com/api/?name=${extractedName}&background=random` : `https://ui-avatars.com/api/?name=User&background=random`,
-      };
-      setUser(mockUser);
-      localStorage.setItem('kalaikatha_user', JSON.stringify(mockUser));
-      if (name) localStorage.setItem('kalaikatha_name_confirmed', 'true');
-      return;
+      throw new Error('Firebase is not configured. Please check your environment variables.');
     }
 
     try {
@@ -149,23 +134,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (name) localStorage.setItem('kalaikatha_name_confirmed', 'true');
     } catch (error: any) {
       console.error('❌ Signup failed:', error);
-      throw new Error(error.message || 'Signup failed. Please try again.');
+      
+      // Provide user-friendly error messages
+      if (error.code === 'auth/email-already-in-use') {
+        throw new Error('An account with this email already exists. Please sign in instead.');
+      } else if (error.code === 'auth/invalid-email') {
+        throw new Error('Invalid email address.');
+      } else if (error.code === 'auth/weak-password') {
+        throw new Error('Password is too weak. Please use at least 6 characters.');
+      } else {
+        throw new Error(error.message || 'Signup failed. Please try again.');
+      }
     }
   };
 
   const updateName = async (name: string) => {
     if (!auth || !db) {
-      // Fallback to localStorage update
-      if (user) {
-        const updatedUser = {
-          ...user,
-          name,
-          avatar: `https://ui-avatars.com/api/?name=${name}&background=random`,
-        };
-        setUser(updatedUser);
-        localStorage.setItem('kalaikatha_user', JSON.stringify(updatedUser));
-      }
-      return;
+      throw new Error('Firebase is not configured. Please check your environment variables.');
     }
 
     try {
@@ -197,9 +182,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = async () => {
     if (!auth) {
-      setUser(null);
-      localStorage.removeItem('kalaikatha_user');
-      return;
+      throw new Error('Firebase Authentication is not configured.');
     }
 
     try {
