@@ -1,36 +1,32 @@
 rules_version = '2';
-
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Allow authenticated users to read/write their own data
+    
+    // Users collection - users can read/write their own data
     match /users/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
-    }
-    
-    // Allow authenticated users to read artisan profiles
-    match /artisans/{artisanId} {
       allow read: if request.auth != null;
-      allow write: if request.auth != null && request.auth.uid == artisanId;
+      allow write: if request.auth != null && request.auth.uid == userId;
     }
     
-    // Allow authenticated users to read/write orders
+    // Artisan products - authenticated users can read, only owners can write
+    match /products/{productId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null && request.resource.data.artisanId == request.auth.uid;
+      allow update, delete: if request.auth != null && resource.data.artisanId == request.auth.uid;
+    }
+    
+    // Custom orders - authenticated users can create, parties can read/update
     match /orders/{orderId} {
-      allow read: if request.auth != null;
+      allow read: if request.auth != null && 
+        (resource.data.buyerId == request.auth.uid || resource.data.artisanId == request.auth.uid);
       allow create: if request.auth != null;
       allow update: if request.auth != null && 
-        (request.auth.uid == resource.data.buyerId || 
-         request.auth.uid == resource.data.artisanId);
+        (resource.data.buyerId == request.auth.uid || resource.data.artisanId == request.auth.uid);
     }
     
-    // Public read for crafts and states
-    match /crafts/{craftId} {
-      allow read: if true;
-      allow write: if false;
-    }
-    
-    match /states/{stateId} {
-      allow read: if true;
-      allow write: if false;
+    // Protected vault - only owner can access
+    match /vault/{userId}/{document=**} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
     }
   }
 }

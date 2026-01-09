@@ -1,4 +1,15 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { 
+  signInWithEmailAndPassword, 
+  createUserWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  updateProfile,
+  User as FirebaseUser
+} from 'firebase/auth';
+import { auth } from '../services/FirebaseService';
+import { doc, setDoc, getDoc, getFirestore } from 'firebase/firestore';
+import { app } from '../services/FirebaseService';
 
 interface User {
   id: string;
@@ -19,86 +30,191 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// Initialize Firestore
+const db = app ? getFirestore(app) : null;
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check for stored user on mount
-    const storedUser = localStorage.getItem('kalaikatha_user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+    if (!auth) {
+      // Fallback to localStorage if Firebase not configured
+      const storedUser = localStorage.getItem('kalaikatha_user');
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+      }
+      setLoading(false);
+      return;
     }
+
+    // Listen to Firebase auth state changes
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser: FirebaseUser | null) => {
+      if (firebaseUser) {
+        // Get user data from Firestore
+        try {
+          if (db) {
+            const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
+            if (userDoc.exists()) {
+              const userData = userDoc.data();
+              const appUser: User = {
+                id: firebaseUser.uid,
+                name: userData.name || firebaseUser.displayName || 'User',
+                email: firebaseUser.email || '',
+                type: userData.type || 'buyer',
+                avatar: firebaseUser.photoURL || `https://ui-avatars.com/api/?name=${userData.name || 'User'}&background=random`,
+              };
+              setUser(appUser);
+              localStorage.setItem('kalaikatha_user', JSON.stringify(appUser));
+            }
+          }
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+        }
+      } else {
+        setUser(null);
+        localStorage.removeItem('kalaikatha_user');
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
   }, []);
 
   const login = async (email: string, password: string, type: 'buyer' | 'artisan') => {
-    // Mock login - in production, this would call your backend
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // Extract name from email (abc@gmail.com → "abc")
-    const extractedName = email.includes('@') 
-      ? email.split('@')[0] 
-      : email.slice(0, 10); // For phone numbers, use first 10 digits
-    
-    const mockUser: User = {
-      id: Math.random().toString(36).substr(2, 9),
-      name: extractedName,
-      email,
-      type,
-      avatar: `https://ui-avatars.com/api/?name=${extractedName}&background=random`,
-    };
+    if (!auth) {
+      // Fallback to mock login
+      const extractedName = email.includes('@') ? email.split('@')[0] : email.slice(0, 10);
+      const mockUser: User = {
+        id: Math.random().toString(36).substr(2, 9),
+        name: extractedName,
+        email,
+        type,
+        avatar: `https://ui-avatars.com/api/?name=${extractedName}&background=random`,
+      };
+      setUser(mockUser);
+      localStorage.setItem('kalaikatha_user', JSON.stringify(mockUser));
+      return;
+    }
 
-    setUser(mockUser);
-    localStorage.setItem('kalaikatha_user', JSON.stringify(mockUser));
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      // User state will be updated by onAuthStateChanged listener
+      console.log('✅ Login successful:', userCredential.user.email);
+    } catch (error: any) {
+      console.error('❌ Login failed:', error);
+      throw new Error(error.message || 'Login failed. Please check your credentials.');
+    }
   };
 
   const signup = async (email: string, password: string, type: 'buyer' | 'artisan', name?: string) => {
-    // Mock signup - in production, this would call your backend
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // Use provided name, or extract from email
-    const extractedName = name || (email.includes('@') 
-      ? email.split('@')[0] 
-      : ''); // Phone numbers need name to be provided
-    
-    const mockUser: User = {
-      id: Math.random().toString(36).substr(2, 9),
-      name: extractedName,
-      email,
-      type,
-      avatar: extractedName 
-        ? `https://ui-avatars.com/api/?name=${extractedName}&background=random`
-        : `https://ui-avatars.com/api/?name=User&background=random`,
-    };
+    if (!auth || !db) {
+      // Fallback to mock signup
+      const extractedName = name || (email.includes('@') ? email.split('@')[0] : '');
+      const mockUser: User = {
+        id: Math.random().toString(36).substr(2, 9),
+        name: extractedName,
+        email,
+        type,
+        avatar: extractedName ? `https://ui-avatars.com/api/?name=${extractedName}&background=random` : `https://ui-avatars.com/api/?name=User&background=random`,
+      };
+      setUser(mockUser);
+      localStorage.setItem('kalaikatha_user', JSON.stringify(mockUser));
+      if (name) localStorage.setItem('kalaikatha_name_confirmed', 'true');
+      return;
+    }
 
-    setUser(mockUser);
-    localStorage.setItem('kalaikatha_user', JSON.stringify(mockUser));
-    
-    // If name was provided, mark as confirmed
-    if (name) {
-      localStorage.setItem('kalaikatha_name_confirmed', 'true');
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const firebaseUser = userCredential.user;
+
+      // Extract name from email if not provided
+      const extractedName = name || (email.includes('@') ? email.split('@')[0] : 'User');
+
+      // Update Firebase profile
+      await updateProfile(firebaseUser, {
+        displayName: extractedName,
+      });
+
+      // Store user data in Firestore
+      await setDoc(doc(db, 'users', firebaseUser.uid), {
+        name: extractedName,
+        email: email,
+        type: type,
+        createdAt: new Date().toISOString(),
+      });
+
+      console.log('✅ Signup successful:', firebaseUser.email);
+      
+      if (name) localStorage.setItem('kalaikatha_name_confirmed', 'true');
+    } catch (error: any) {
+      console.error('❌ Signup failed:', error);
+      throw new Error(error.message || 'Signup failed. Please try again.');
     }
   };
 
   const updateName = async (name: string) => {
-    // Update user name - in production, this would call your backend
-    await new Promise(resolve => setTimeout(resolve, 500));
-    
-    if (user) {
-      const updatedUser = {
-        ...user,
-        name,
-        avatar: `https://ui-avatars.com/api/?name=${name}&background=random`,
-      };
-      
-      setUser(updatedUser);
-      localStorage.setItem('kalaikatha_user', JSON.stringify(updatedUser));
+    if (!auth || !db) {
+      // Fallback to localStorage update
+      if (user) {
+        const updatedUser = {
+          ...user,
+          name,
+          avatar: `https://ui-avatars.com/api/?name=${name}&background=random`,
+        };
+        setUser(updatedUser);
+        localStorage.setItem('kalaikatha_user', JSON.stringify(updatedUser));
+      }
+      return;
+    }
+
+    try {
+      const currentUser = auth.currentUser;
+      if (currentUser && user) {
+        // Update Firebase profile
+        await updateProfile(currentUser, { displayName: name });
+        
+        // Update Firestore
+        await setDoc(doc(db, 'users', currentUser.uid), {
+          name: name,
+        }, { merge: true });
+
+        // Update local state
+        const updatedUser = {
+          ...user,
+          name,
+          avatar: `https://ui-avatars.com/api/?name=${name}&background=random`,
+        };
+        setUser(updatedUser);
+        localStorage.setItem('kalaikatha_user', JSON.stringify(updatedUser));
+        console.log('✅ Name updated successfully');
+      }
+    } catch (error) {
+      console.error('❌ Failed to update name:', error);
+      throw new Error('Failed to update name. Please try again.');
     }
   };
 
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem('kalaikatha_user');
+  const logout = async () => {
+    if (!auth) {
+      setUser(null);
+      localStorage.removeItem('kalaikatha_user');
+      return;
+    }
+
+    try {
+      await signOut(auth);
+      setUser(null);
+      localStorage.removeItem('kalaikatha_user');
+      console.log('✅ Logout successful');
+    } catch (error) {
+      console.error('❌ Logout failed:', error);
+    }
   };
+
+  if (loading) {
+    return null; // Or return a loading spinner
+  }
 
   return (
     <AuthContext.Provider value={{ user, login, signup, updateName, logout, isAuthenticated: !!user }}>
