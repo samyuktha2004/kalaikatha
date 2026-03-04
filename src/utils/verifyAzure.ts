@@ -29,10 +29,7 @@ const checks = {
     key: import.meta.env.VITE_AZURE_STORAGE_KEY,
     container: import.meta.env.VITE_AZURE_STORAGE_CONTAINER
   },
-  'Firebase': {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID
-  }
+  // Firebase removed from runtime; keep Firebase checks in docs if needed
 };
 
 let allConfigured = true;

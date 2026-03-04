@@ -114,24 +114,6 @@ export default function AzureTestPage() {
     }
   };
 
-  const testFirebase = async () => {
-    setResults(prev => ({ ...prev, firebase: 'pending' }));
-    addLog('Testing Firebase...');
-    try {
-      const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
-      const projectId = import.meta.env.VITE_FIREBASE_PROJECT_ID;
-      
-      if (!apiKey || !projectId) {
-        throw new Error('Missing credentials');
-      }
-      
-      addLog(`✅ Firebase configured: ${projectId}`);
-      setResults(prev => ({ ...prev, firebase: 'success' }));
-    } catch (error) {
-      addLog(`❌ Firebase failed: ${error}`);
-      setResults(prev => ({ ...prev, firebase: 'error' }));
-    }
-  };
 
   const testAll = async () => {
     setLogs([]);
@@ -140,7 +122,6 @@ export default function AzureTestPage() {
     await testTranslator();
     await testSpeech();
     await testStorage();
-    await testFirebase();
   };
 
   const getStatusIcon = (status: 'pending' | 'success' | 'error' | undefined) => {
@@ -156,7 +137,6 @@ export default function AzureTestPage() {
     { key: 'translator', name: 'Translator', description: '10 Indian languages' },
     { key: 'speech', name: 'Speech Services', description: 'Voice commands (Vani)' },
     { key: 'storage', name: 'Blob Storage', description: 'Photo uploads' },
-    { key: 'firebase', name: 'Firebase', description: 'Authentication' },
   ];
 
   return (
