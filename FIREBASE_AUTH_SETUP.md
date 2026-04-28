@@ -163,7 +163,7 @@ Your environment variables should already be set in Vercel. Verify they're all t
 - ✅ Environment variables stored securely in Vercel
 - ✅ Firebase keys not committed to Git
 - ✅ HTTPS-only connections
-- ✅ CORS configured for Azure services
+- ✅ CORS configured for Firebase services
 
 ---
 

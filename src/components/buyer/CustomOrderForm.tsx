@@ -456,7 +456,7 @@ export function CustomOrderForm({ isOpen, onClose, onSubmit, artisanId, craftId 
                   <MessageCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5" />
                   <div>
                     <h4 className="text-sm text-blue-900 dark:text-blue-300 mb-1">
-                      Azure Agentic AI Negotiation
+                      Agentic AI Negotiation
                     </h4>
                     <p className="text-xs text-blue-700 dark:text-blue-400">
                       Our AI will handle counter-negotiations automatically, ensuring artisans can fulfill

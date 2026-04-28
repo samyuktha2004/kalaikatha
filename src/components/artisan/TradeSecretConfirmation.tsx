@@ -115,7 +115,7 @@ export function TradeSecretConfirmation({
                 <div className="text-sm text-blue-900 dark:text-blue-300">
                   <p className="font-medium mb-1">⚠️ Liability Protection</p>
                   <p>
-                    Azure AI detected potential trade secrets in your image. Please review and
+                    AI detected potential trade secrets in your image. Please review and
                     confirm which items should be kept private in your Protected Vault.
                     Unconfirmed items will be treated as public information.
                   </p>

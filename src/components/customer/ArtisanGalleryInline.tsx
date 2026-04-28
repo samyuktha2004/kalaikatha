@@ -117,7 +117,7 @@ export function ArtisanGalleryInline({ craftId, onCustomOrder }: ArtisanGalleryI
           <EmptyState
             icon={Users}
             title="Unable to Load Artisans"
-            description="We're having trouble connecting to Azure. Please check your internet connection and try again."
+            description="We're having trouble connecting. Please check your internet connection and try again."
             action={{
               label: "Retry",
               onClick: () => window.location.reload()

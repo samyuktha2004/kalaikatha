@@ -244,7 +244,7 @@ Place: Thanjavur`
             <div className="flex items-center gap-3">
               <h1 className="text-2xl text-gray-900 dark:text-white">Government Schemes</h1>
               <span className="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-full text-xs font-medium">
-                ☁️ Azure AI
+                ☁️ Google AI
               </span>
             </div>
             <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">
@@ -600,7 +600,7 @@ Place: Thanjavur`
                       </div>
 
                       <p className="text-xs text-gray-500 dark:text-gray-400 mt-3 text-center">
-                        💡 Powered by Azure OpenAI - Review and customize before sending
+                        💡 Powered by Google AI - Review and customize before sending
                       </p>
                     </motion.div>
                   )}

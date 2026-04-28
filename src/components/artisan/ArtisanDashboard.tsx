@@ -49,7 +49,7 @@ export function ArtisanDashboard({ onNavigate }: ArtisanDashboardProps) {
             
             {/* Language Dropdown - simplified */}
             <div className="absolute top-full right-0 mt-2 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-2 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-              <div className="text-xs text-gray-500 dark:text-gray-400 px-3 py-2">Azure AI Translation</div>
+              <div className="text-xs text-gray-500 dark:text-gray-400 px-3 py-2">Google Translation</div>
               {languages.map((lang) => (
                 <button
                   key={lang.code}

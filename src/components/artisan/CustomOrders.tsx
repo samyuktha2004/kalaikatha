@@ -248,7 +248,7 @@ export function CustomOrders({ onBack }: CustomOrdersProps) {
                           ? 'text-green-900 dark:text-green-300'
                           : 'text-red-900 dark:text-red-300'
                       }`}>
-                        Azure AI Analysis
+                        AI Analysis
                       </h4>
                       <p className={`text-sm mb-2 ${
                         order.aiSuggestion.canFulfill
@@ -367,7 +367,7 @@ export function CustomOrders({ onBack }: CustomOrdersProps) {
                     </div>
                     <p className="text-sm text-blue-700 dark:text-blue-400 mb-3">
                       Your counter offer of ₹{order.yourOffer.toLocaleString()} has been sent. 
-                      Azure AI is working to reach ₹{order.aiSuggestion.recommendedPrice.toLocaleString()} 
+                      AI is working to reach ₹{order.aiSuggestion.recommendedPrice.toLocaleString()}
                       while staying above your minimum range.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-2">

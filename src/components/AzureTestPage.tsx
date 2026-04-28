@@ -133,7 +133,7 @@ export default function AzureTestPage() {
 
   const services = [
     { key: 'vision', name: 'Computer Vision', description: 'Photo analysis & enhancement' },
-    { key: 'openai', name: 'Azure OpenAI GPT-4', description: 'Smart pricing & marketing' },
+    { key: 'openai', name: 'Google AI (Gemini)', description: 'Smart pricing & marketing' },
     { key: 'translator', name: 'Translator', description: '10 Indian languages' },
     { key: 'speech', name: 'Speech Services', description: 'Voice commands (Vani)' },
     { key: 'storage', name: 'Blob Storage', description: 'Photo uploads' },
@@ -143,7 +143,7 @@ export default function AzureTestPage() {
     <div className="min-h-screen bg-gradient-to-br from-stone-50 to-amber-50 dark:from-gray-900 dark:to-gray-800 p-8">
       <div className="max-w-4xl mx-auto space-y-6">
         <div className="text-center space-y-2">
-          <h1 className="text-4xl font-bold">Azure Services Test</h1>
+          <h1 className="text-4xl font-bold">Services Test</h1>
           <p className="text-muted-foreground">Verify all services are configured correctly</p>
         </div>
 

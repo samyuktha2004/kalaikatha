@@ -21,8 +21,8 @@ export const AzureBadge = memo(() => {
       >
         <span className="flex items-center gap-1.5 md:gap-2">
           <span className="text-sm md:text-base">☁️</span>
-          <span className="hidden sm:inline font-medium">Powered by Azure Maps</span>
-          <span className="sm:hidden font-medium">Azure Maps</span>
+          <span className="hidden sm:inline font-medium">Powered by Google Maps</span>
+          <span className="sm:hidden font-medium">Google Maps</span>
         </span>
       </div>
     );
@@ -35,8 +35,8 @@ export const AzureBadge = memo(() => {
     >
       <span className="flex items-center gap-1.5 md:gap-2">
         <span className="text-sm md:text-base">☁️</span>
-        <span className="hidden sm:inline font-medium">Powered by Azure AI</span>
-        <span className="sm:hidden font-medium">Azure AI</span>
+        <span className="hidden sm:inline font-medium">Powered by Google AI</span>
+        <span className="sm:hidden font-medium">Google AI</span>
       </span>
     </div>
   );

@@ -202,7 +202,7 @@ export function AIStudio({ onBack, onSaveProduct }: AIStudioProps) {
             <div className="flex items-center gap-3">
               <h1 className="text-2xl text-gray-900 dark:text-white">AI Studio</h1>
               <span className="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 rounded-full text-xs">
-                Azure AI
+                Google AI
               </span>
             </div>
             {showDetailedText && (
@@ -251,7 +251,7 @@ export function AIStudio({ onBack, onSaveProduct }: AIStudioProps) {
                 <Sparkles className="w-5 h-5" />
               </div>
               <div className="flex-1">
-                <p className="mb-2 font-medium">Azure AI Analysis Complete:</p>
+                <p className="mb-2 font-medium">AI Analysis Complete:</p>
                 <ul className="space-y-1 text-sm text-white/90">
                   {analysis.tradeSecrets.length > 0 && (
                     <li>🔒 {analysis.tradeSecrets.length} trade secret(s) detected and protected</li>
@@ -395,7 +395,7 @@ export function AIStudio({ onBack, onSaveProduct }: AIStudioProps) {
                 {analyzing && (
                   <div className="mt-4 flex items-center gap-3 text-indigo-600 dark:text-indigo-400">
                     <Loader className="w-5 h-5 animate-spin" />
-                    <span className="text-sm">Azure AI analyzing & enhancing image...</span>
+                    <span className="text-sm">AI analyzing & enhancing image...</span>
                   </div>
                 )}
 
