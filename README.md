@@ -2,10 +2,10 @@
 
 > **Empowering Indian artisans with AI, voice assistance, and cloud technology**
 
-[![AWS](https://img.shields.io/badge/AWS-Cloud%20Native-orange?logo=amazon-aws)](https://aws.amazon.com)
 [![React](https://img.shields.io/badge/React-18.3-blue?logo=react)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue?logo=typescript)](https://typescriptlang.org)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Firebase](https://img.shields.io/badge/firebase-v10.x-orange)](https://firebase.google.com/)
+[![Google Cloud AI](https://img.shields.io/badge/Google%20Cloud%20AI-Enabled-4285f4)](https://cloud.google.com/ai)
 
 ---
 
@@ -24,6 +24,62 @@ Kalaikatha is a revolutionary platform connecting Indian artisans with global bu
 - 🏛️ **Government Schemes** - AI-matched opportunities and application assistance
 
 ---
+
+### 🚀 Quick Start
+Prerequisites
+Node.js 20+ installed
+Google Cloud Platform (GCP) account with credits
+Firebase account (fully integrated)
+Installation
+Install dependencies
+Bash
+npm install
+Configure Google Cloud & Firebase
+Copy .env.local file (pre-configured with Project ID and API keys)
+All Google Cloud services are enabled and ready!
+Start development server
+Bash
+npm run dev
+Open browser
+Navigate to: http://localhost:3000
+
+### Configured Services
+All Google Cloud AI services are configured and ready:
+✅ Cloud Vision API - Photo enhancement & product analysis
+✅ Vertex AI (Gemini 1.5 Pro) - Smart pricing & marketing generation
+✅ Cloud Translation API - Support for 10+ Indian languages
+✅ Cloud Speech-to-Text - Voice commands (Vani assistant)
+✅ Cloud Storage - High-speed artisan media uploads
+✅ Firebase - Authentication, Firestore (NoSQL), & analytics
+
+### Key Features
+For Artisans
+🎨 AI Photo Studio - Enhance low-light/cluttered workshop photos via Vision API
+💰 Smart Pricing - Vertex AI calculates competitive rates based on market trends
+🔒 Protected Vault - Secure trade secrets using Cloud KMS encryption
+📱 Marketing Generator - One-tap Instagram, Amazon, and Etsy copy generation
+🤖 Bargain Bot - Autonomous negotiation powered by Gemini 1.5 Pro
+🎤 Voice-First - Fully operational in Tamil/Hindi without requiring typing
+For Customers
+🗺️ Interactive Map - Discover regional crafts by Indian state
+👥 Meet the Makers - Connect directly with verified authentic artisans
+🎬 AI Experience - Google-curated cultural videos and craft stories
+🛍️ Custom Orders - Direct request system for personalized handmade goods
+
+### Tech Stack
+Frontend: React 18 + TypeScript + Vite
+UI: Radix UI + Tailwind CSS + Framer Motion
+AI/ML: Google Vertex AI (Gemini), Cloud Vision, Translation API, Speech-to-Text
+Cloud Infrastructure: Google Cloud Storage (GCS), Cloud Key Management Service (KMS)
+Database/Auth: Firebase Firestore & Firebase Auth
+Operational Cost: ~$7/month (Optimized for scale vs. traditional e-commerce)
+
+### 🏆 Google Solution Challenge 2026
+This project is optimized for global impact with a focus on:
+Social Impact: Direct economic empowerment for 7M artisans
+AI Innovation: Multimodal pipeline (Voice + Vision + LLM)
+Accessibility: Offline-capable speech packs and low-data modes
+Sustainability: Preserving cultural heritage through digital security
 
 ## 🚀 Roadmap
 
